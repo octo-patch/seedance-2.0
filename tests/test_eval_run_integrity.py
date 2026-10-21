@@ -3490,7 +3490,7 @@ class LedgerIntegrityTests(unittest.TestCase):
             self.assertEqual(run_args[3], "MiniMax-M2.7")
             self.assertEqual(run_args[6], eval_run.PROVIDER_CONFIGS["minimax"])
             self.assertEqual(
-                run_args[7], "https://api.minimaxi.com/anthropic/v1/messages"
+                run_args[7], "https://api.minimax.cn/anthropic/v1/messages"
             )
             judge.assert_not_called()
 

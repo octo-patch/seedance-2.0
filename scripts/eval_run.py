@@ -98,14 +98,16 @@ except OSError:
     # Zip imports are valid for packaging/discovery. A real harness run still
     # fails closed when it binds execution to a frozen regular source file.
     _EXECUTED_EVALUATOR_PATH = None
-_EXECUTED_EVALUATOR_SOURCE_SHA256 = "ad357e29d441220b7344f79014023b69a544943b43a6eac3789231a6d47d4fad"
+_EXECUTED_EVALUATOR_SOURCE_SHA256 = "38c73b109ce902a4451b398cc9fd1cb5ba6e7ad7b8bc14d096cb6b757703c417"
 
 ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"
 API_URL = ANTHROPIC_API_URL
 ANTHROPIC_VERSION = "2023-06-01"
 DEFAULT_MODEL = "claude-sonnet-4-6"
-MINIMAX_MODELS = (
-    "MiniMax-M3",
+MINIMAX_MODELS = ("MiniMax-M3.1-Flash", "MiniMax-M3")
+# Explicit legacy selections remain reproducible without advertising them as
+# current choices. Availability is still determined by the provider.
+MINIMAX_LEGACY_MODELS = (
     "MiniMax-M2.7",
     "MiniMax-M2.7-highspeed",
     "MiniMax-M2.5",
@@ -116,7 +118,7 @@ MINIMAX_MODELS = (
 )
 MINIMAX_ANTHROPIC_BASE_URLS = {
     "global_en": "https://api.minimax.io/anthropic",
-    "cn_zh": "https://api.minimaxi.com/anthropic",
+    "cn_zh": "https://api.minimax.cn/anthropic",
 }
 ORCAROUTER_API_URL = "https://api.orcarouter.ai/v1/messages"
 # Deliberately limited to the Claude routes in the provider's native Messages
@@ -246,6 +248,7 @@ class ProviderConfig:
     auth_header: str = "x-api-key"
     auth_prefix: str = ""
     response_schema: str = "anthropic"
+    legacy_models: tuple[str, ...] = ()
 
 
 PROVIDER_CONFIGS = {
@@ -265,6 +268,7 @@ PROVIDER_CONFIGS = {
         auth_header="Authorization",
         auth_prefix="Bearer ",
         response_schema="minimax",
+        legacy_models=MINIMAX_LEGACY_MODELS,
     ),
     "orcarouter": ProviderConfig(
         api_key_env="ORCAROUTER_API_KEY",
@@ -1666,7 +1670,7 @@ def resolve_provider(
 
 
 def validate_model(provider_name: str, config: ProviderConfig, model: str) -> None:
-    if config.models and model not in config.models:
+    if config.models and model not in config.models + config.legacy_models:
         supported = ", ".join(config.models)
         raise ValueError(
             f"model '{model}' is not supported by provider '{provider_name}' "
