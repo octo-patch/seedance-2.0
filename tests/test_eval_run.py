@@ -80,7 +80,7 @@ class EvalRunProviderTests(unittest.TestCase):
             eval_run.MINIMAX_ANTHROPIC_BASE_URLS,
             {
                 "global_en": "https://api.minimax.io/anthropic",
-                "cn_zh": "https://api.minimax.cn/anthropic",
+                "cn_zh": "https://api.minimaxi.com/anthropic",
             },
         )
         self.assertEqual(config.auth_header, "Authorization")
@@ -116,7 +116,7 @@ class EvalRunProviderTests(unittest.TestCase):
         config = eval_run.PROVIDER_CONFIGS["minimax"]
         for region, expected_endpoint in {
             "global_en": "https://api.minimax.io/anthropic/v1/messages",
-            "cn_zh": "https://api.minimax.cn/anthropic/v1/messages",
+            "cn_zh": "https://api.minimaxi.com/anthropic/v1/messages",
         }.items():
             with self.subTest(region=region):
                 _, endpoint, model = eval_run.resolve_provider("minimax", region, None)

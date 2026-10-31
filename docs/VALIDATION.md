@@ -153,8 +153,8 @@ Explicit older MiniMax model IDs remain accepted for saved commands and judge
 model overrides, subject to provider availability. The
 [global](https://platform.minimax.io/docs/api-reference/text-anthropic-api) and
 [CN](https://platform.minimaxi.com/docs/api-reference/text-anthropic-api) contracts
-checked on 2026-10-21 list both current models. The built-in CN endpoint now uses
-the documented `https://api.minimax.cn/anthropic/v1/messages` host.
+checked on 2026-10-21 list both current models. The built-in CN endpoint uses
+the documented `https://api.minimaxi.com/anthropic/v1/messages` host.
 Flash always uses thinking; the
 harness omits `thinking`, `output_config`, and `service_tier`, retaining the
 provider's defaults. Its existing output-token ceilings are unchanged, so inspect

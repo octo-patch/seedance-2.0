@@ -1200,7 +1200,7 @@ class DiscoveryBoundaryTests(unittest.TestCase):
             self.assertEqual(args[2:4], ("MiniMax-M2.7", "MiniMax-M2.7"))
             self.assertIs(args[6], eval_run.PROVIDER_CONFIGS["minimax"])
             self.assertEqual(
-                args[7], "https://api.minimax.cn/anthropic/v1/messages"
+                args[7], "https://api.minimaxi.com/anthropic/v1/messages"
             )
             text = ledger.read_text(encoding="utf-8")
             digest = snapshot.require(

@@ -98,7 +98,7 @@ except OSError:
     # Zip imports are valid for packaging/discovery. A real harness run still
     # fails closed when it binds execution to a frozen regular source file.
     _EXECUTED_EVALUATOR_PATH = None
-_EXECUTED_EVALUATOR_SOURCE_SHA256 = "38c73b109ce902a4451b398cc9fd1cb5ba6e7ad7b8bc14d096cb6b757703c417"
+_EXECUTED_EVALUATOR_SOURCE_SHA256 = "aba3519d960e243e214c34f997eb4bb512ffad944d83d1e5f9373f4dafe7bc2c"
 
 ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"
 API_URL = ANTHROPIC_API_URL
@@ -118,7 +118,7 @@ MINIMAX_LEGACY_MODELS = (
 )
 MINIMAX_ANTHROPIC_BASE_URLS = {
     "global_en": "https://api.minimax.io/anthropic",
-    "cn_zh": "https://api.minimax.cn/anthropic",
+    "cn_zh": "https://api.minimaxi.com/anthropic",
 }
 ORCAROUTER_API_URL = "https://api.orcarouter.ai/v1/messages"
 # Deliberately limited to the Claude routes in the provider's native Messages
